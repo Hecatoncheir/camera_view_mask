@@ -1,0 +1,78 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+    errors:
+        invalid_annotation_target: ignore
+    exclude: [packages, build/**, lib/**.freezed.dart, lib/**.g.dart]
+    plugins:
+        - dart_code_metrics
+
+linter:
+    rules:
+        - use_super_parameters
+        - cancel_subscriptions
+        - close_sinks
+        - curly_braces_in_flow_control_structures
+
+dart_code_metrics:
+    anti-patterns:
+        - long-method
+        - long-parameter-list
+    metrics:
+        cycloramic-complexity: 5
+        maximum-nesting-level: 5
+        number-of-parameters: 8
+        source-lines-of-code: 250
+        number-of-methods: 10
+        weight-of-class: 0.33
+        technical-debt:
+            threshold: 1
+            todo-cost: 161
+            ignore-cost: 320
+            ignore-for-file-cost: 396
+            as-dynamic-cost: 322
+            deprecated-annotations-cost: 37
+            file-nullsafety-migration-cost: 41
+            unit-type: "₽"
+    metrics-exclude:
+        - test/**
+    rules:
+        - avoid-ignoring-return-values:
+          exclude:
+              - test/**
+        # - avoid-non-null-assertion
+        - avoid-unused-parameters
+        - binary-expression-operand-order
+        - double-literal-format
+        - no-boolean-literal-compare
+        - no-empty-block
+        - no-equal-then-else
+        - no-magic-number:
+              exclude:
+                  - test/**
+                  - lib/camera/**
+        - no-object-declaration
+        - prefer-conditional-expressions
+        - prefer-trailing-comma:
+              exclude:
+                  - test/**
+        - avoid-global-state
+        - prefer-correct-type-name
+        - prefer-match-file-name:
+              exclude:
+                  - test/**
+
+        # Flutter specific
+        - always-remove-listener
+        - avoid-returning-widgets
+        - avoid-unnecessary-setstate
+        - avoid-wrapping-in-padding
+        - prefer-extracting-callbacks
+        - prefer-intl-name
+        - provide-correct-intl-args
+        - prefer-match-file-name:
+              exclude:
+                  - test/**
+        - prefer-single-widget-per-file:
+              ignore-private-widgets: true
+        - prefer-const-border-radius
