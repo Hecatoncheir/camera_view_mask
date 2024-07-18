@@ -1,7 +1,11 @@
 # CameraViewMask package
 
 
-<br>![flutter_widget_screenshot](/preview/0.jpg "Flutter widget example preview") ![flutter_widget_screenshot](/preview/1.jpg "Flutter widget example preview")
+<br>
+
+|   |   |
+|---|---|
+|![flutter_widget_screenshot](/preview/0.jpg "Flutter widget example preview") |![flutter_widget_screenshot](/preview/1.jpg "Flutter widget example preview")|
 
 ### CameraBloc events:
 
