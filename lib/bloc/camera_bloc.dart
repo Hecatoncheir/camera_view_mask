@@ -72,9 +72,16 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
     emit(state.copyWith(isCameraPaused: true));
   }
 
-  Future<void> onResumeDefaultCamera(_, Emitter<CameraState> emit) async {
+  Future<void> onResumeDefaultCamera(
+    ResumeCamera event,
+    Emitter<CameraState> emit,
+  ) async {
     final controller = state.cameraController;
     if (controller == null) return;
+
+    final description = event.description;
+    if (description != null) controller.setDescription(description);
+
     controller.resumePreview();
     emit(state.copyWith(isCameraPaused: false));
   }

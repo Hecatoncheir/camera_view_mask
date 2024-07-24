@@ -17,7 +17,8 @@ class PauseCamera extends CameraEvent {
 }
 
 class ResumeCamera extends CameraEvent {
-  const ResumeCamera();
+  final camera.CameraDescription? description;
+  const ResumeCamera({this.description});
 }
 
 class ChangeFlashMode extends CameraEvent {
