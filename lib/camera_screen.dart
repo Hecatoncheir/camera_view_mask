@@ -31,7 +31,8 @@ class CameraScreen extends StatefulWidget {
   State<CameraScreen> createState() => _CameraScreenState();
 }
 
-class _CameraScreenState extends State<CameraScreen> {
+class _CameraScreenState extends State<CameraScreen>
+    with WidgetsBindingObserver {
   late final CameraBloc cameraBloc;
   late StreamSubscription<CameraState> cameraBlocSubscription;
 
@@ -92,6 +93,22 @@ class _CameraScreenState extends State<CameraScreen> {
 
     blinkOpacityController = StreamController<double>();
     blinkOpacityStream = blinkOpacityController.stream.asBroadcastStream();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final CameraController? cameraController =
+        cameraBloc.state.cameraController;
+
+    if (cameraController == null || !cameraController.value.isInitialized) {
+      return;
+    }
+
+    if (state == AppLifecycleState.inactive) {
+      cameraController.dispose();
+    } else if (state == AppLifecycleState.resumed) {
+      cameraBloc.add(const ResumeCamera());
+    }
   }
 
   @override
